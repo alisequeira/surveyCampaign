@@ -2,7 +2,7 @@ const express = require('express');
 const app = express(); //Generate a new express aplication
 
 app.get('/', (req, res) => {
-    res.send({ bye: "Buddy buddy" });
+    res.send({ bye: "Buddy buddy last test" });
 });
 
 const PORT = process.env.PORT || 5000; //If there an environment variable that has been already defined by heroku then used, IFNOT use port 5000
