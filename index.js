@@ -7,7 +7,7 @@ const app = express(); //Generate a new express aplication
 passport.use(new googleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/calback'
+    callbackURL: '/auth/google/callback'
 }, (accesToken) => {
     console.log(accesToken);
 })
