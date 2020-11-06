@@ -20,14 +20,15 @@ passport.deserializeUser((id, done) => {
 passport.use(new googleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: '/auth/google/callback',
+    proxy: true //this will help us  to fix the proxy issue with heroku (http - htpps)
 }, (accesToken, refreshtoken, profile, done) => {//this function will fire once the user has been redirect to callbackURL
     //this function is our opportunity to now take this identifying user information and save it to our data base
 
     User.findOne({ googleId: profile.id })//return a promise
         .then((existingUser) => {
             if (existingUser) {
-                //we already have a record with the given id
+                //we alre ady have a record with the given id
                 done(null, existingUser);//done indicate to passport that we are finished and may continue with the workflow
             } else {
                 //we don't have a user record with this id, make a new record
