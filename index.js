@@ -7,7 +7,7 @@ const passport = require('passport');
 require('./models/User');
 require('./services/passport');
 const app = express(); //Generate a new express aplication
-app.use(
+app.use(//middle ware
     cookieSession({
         maxAge: 30 * 24 * 60 * 60 * 1000, //maxAge is how log this cookie can exist in the browser before it's automatically expired(30 were set, but has to be passed in miliseconds)
         keys: [keys.cookieKey]
@@ -18,7 +18,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 authRoute(app);
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI);//connecting to the data base mongoDB
 const PORT = process.env.PORT || 5000; //If there an environment variable that has been already defined by heroku then used, IFNOT use port 5000
 //so in development environment we're listenig in port 5000 and in producction we're listening in wherever port heroku set to us
 app.listen(PORT, () => console.log('server listenig'));
