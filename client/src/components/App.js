@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './Header';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../acctions';//import all the actions creator from acctions/index.js file
 /**
  * BrowserRouter is the thing that tell react router how to behave
  * Route is a react component that setup the component to navigate
@@ -13,7 +15,7 @@ const Landing = () => <h2>Landing</h2>
 class App extends React.Component {
 
     componentDidMount = () => {
-
+        this.props.fetchUser();
     }
 
     render() {
@@ -32,4 +34,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default connect(null, actions)(App);

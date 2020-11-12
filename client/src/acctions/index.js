@@ -8,7 +8,7 @@ import { FETCH_USER } from './types';
     We then make a request. We wait until we get the response back from our API
     And then once we have the reponse only at that point in time will we actually dispatch our action. 
   */
-const fetchUser = () => {
+export const fetchUser = () => {
     return function (dispatch) {
         axios.get('/api/current_user')
             .then(res => dispatch({ type: FETCH_USER, payload: res }))
