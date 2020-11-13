@@ -18,8 +18,8 @@ class Header extends React.Component {
             default:
                 return (
                     [
-                        <li><Payment /></li>,
-                        <li>
+                        <li key={1}><Payment /></li>,
+                        <li key={2}>
                             <a href="/api/logout">Logout</a>
                         </li>
                     ]
