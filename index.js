@@ -1,5 +1,6 @@
 const express = require('express');
 const authRoute = require('./routes/authRoute');
+const billingRoute = require('./routes/billingRoute');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const cookieSession = require('cookie-session');//library to help us to handlel cookies
@@ -18,6 +19,7 @@ app.use(//middle ware
 app.use(passport.initialize());
 app.use(passport.session());
 authRoute(app);
+billingRoute(app);
 mongoose.connect(keys.mongoURI);//connecting to the data base mongoDB
 const PORT = process.env.PORT || 5000; //If there an environment variable that has been already defined by heroku then used, IFNOT use port 5000
 //so in development environment we're listenig in port 5000 and in producction we're listening in wherever port heroku set to us
