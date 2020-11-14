@@ -5,9 +5,11 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const cookieSession = require('cookie-session');//library to help us to handlel cookies
 const passport = require('passport');
+const bodyParser = require('body-parser');
 require('./models/User');
 require('./services/passport');
 const app = express(); //Generate a new express aplication
+app.use(bodyParser.json());//this middleware parse incoming bodies in a middleware before your handlers, avaliable under the req.body property
 app.use(//middle ware
     cookieSession({
         maxAge: 30 * 24 * 60 * 60 * 1000, //maxAge is how log this cookie can exist in the browser before it's automatically expired(30 were set, but has to be passed in miliseconds)
