@@ -22,6 +22,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 authRoute(app);
 billingRoute(app);
+
+//Routing in PRODUCTION
+//this is sending the build files created in the client directory when I hit npm run build
+if (process.env.NODE_ENV === 'production') {
+    //Express will serve up production assets
+    //like our main.js file, or main.css file!
+    app.use(express.static('client/build'));
+
+    //Express will serve up the index.html file
+    //if it doesn't recognize the route
+    const path = require('path');
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
 mongoose.connect(keys.mongoURI);//connecting to the data base mongoDB
 const PORT = process.env.PORT || 5000; //If there an environment variable that has been already defined by heroku then used, IFNOT use port 5000
 //so in development environment we're listenig in port 5000 and in producction we're listening in wherever port heroku set to us
