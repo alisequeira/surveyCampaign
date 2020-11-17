@@ -5,7 +5,7 @@ const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 const surveySchema = require('../models/Survey');
 
-const Survey = mongoose.model('surveys', surveySchema);
+const Survey = mongoose.model('surveys');
 
 
 module.exports = (app) => {
