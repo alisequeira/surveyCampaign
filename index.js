@@ -1,6 +1,7 @@
 const express = require('express');
 const authRoute = require('./routes/authRoute');
 const billingRoute = require('./routes/billingRoute');
+const surveyRoute = require('./routes/surveyRoute');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const cookieSession = require('cookie-session');//library to help us to handlel cookies
@@ -23,6 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 authRoute(app);
 billingRoute(app);
+surveyRoute(app);
 
 //Routing in PRODUCTION
 //this is sending the build files created in the client directory when I hit npm run build
