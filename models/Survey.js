@@ -13,7 +13,13 @@ const surveySchema = mongoose.Schema({
     no: {
         type: Number,
         default: 0
-    }
+    },
+    _user: {//set up a relationship between this model and User model
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    dataSent: Date,
+    lastResponded: Date
 });
 
 mongoose.model('surveys', surveySchema);
