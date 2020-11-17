@@ -7,6 +7,7 @@ const cookieSession = require('cookie-session');//library to help us to handlel 
 const passport = require('passport');
 const bodyParser = require('body-parser');
 require('./models/User');
+require('./models/Survey');
 require('./services/passport');
 const app = express(); //Generate a new express aplication
 app.use(bodyParser.json());//this middleware parse incoming bodies in a middleware before your handlers, avaliable under the req.body property
