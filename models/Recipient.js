@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const recipientSchema = mongoose.Schema({
+const recipientSchema = new mongoose.Schema({
     email: String,
     responded: {
         typeK: Boolean,
