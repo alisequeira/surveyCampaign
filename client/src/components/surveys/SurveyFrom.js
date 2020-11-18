@@ -4,7 +4,8 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import SurveyField from './SurveyField';
-import validdateEmails from '../../utils/validateEmails'
+import validdateEmails from '../../utils/validateEmails';
+import formfields from './formField';
 /**
  * The Field component is a helper provided by redux form
  * rendering absolutely any type of treditional HTML form element
@@ -13,16 +14,10 @@ import validdateEmails from '../../utils/validateEmails'
  * HandleSubmit is a function provided by reduxForm helper that we wireUp at the bottom
  */
 
-const FIELDS = [
-    { label: "Survey Title", name: "title" },
-    { label: "Subject Line", name: "subject" },
-    { label: "Email Body", name: "body" },
-    { label: "Recipient List", name: "emails" }
-]
 class SurveyForm extends React.Component {
 
     renderFields = () => {
-        return _.map(FIELDS, field => {
+        return _.map(formfields, field => {
             return <Field key={field.name} label={field.label} name={field.name} component={SurveyField} type="text" />
         });
     }
@@ -47,7 +42,7 @@ function validate(values) {
     const errors = {};
 
     errors.emails = validdateEmails(values.emails || '')
-    _.forEach(FIELDS, ({ name }) => {
+    _.forEach(formfields, ({ name }) => {
         if (!values[name]) {
             errors[name] = `You must provide a value`;
         }
