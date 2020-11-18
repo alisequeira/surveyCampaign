@@ -4,9 +4,10 @@
 // {...input} we are passing all the events handlers of prop.input instead of doing one by one onBlur={prop.input.onBlur}
 import React from 'react'
 
-export default ({ input }) => {
+export default ({ input, label }) => {
     return (
         <div>
+            <label>{label}</label>
             <input {...input} />
         </div>
     );

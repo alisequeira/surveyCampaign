@@ -1,4 +1,5 @@
 //SurveyForm show a form for a user to add input
+import _ from 'lodash'
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import SurveyField from './SurveyField';
@@ -9,14 +10,19 @@ import SurveyField from './SurveyField';
  * 
  * HandleSubmit is a function provided by reduxForm helper that we wireUp at the bottom
  */
+
+const FIELDS = [
+    { label: "Survey Title", name: "title" },
+    { label: "Subject Line", name: "subject" },
+    { label: "Email Body", name: "body" },
+    { label: "Recipient List", name: "emails" }
+]
 class SurveyForm extends React.Component {
 
     renderFields = () => {
-        return (
-            <div>
-                <Field type="text" name="surveyTitle" component={SurveyField} />
-            </div>
-        )
+        return _.map(FIELDS, field => {
+            return <Field key={field.name} label={field.label} name={field.name} component={SurveyField} type="text" />
+        });
     }
 
     render() {
