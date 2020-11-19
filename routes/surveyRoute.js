@@ -1,10 +1,12 @@
+require('../models/Survey')
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
-const surveySchema = require('../models/Survey'); //without this my app crash, IDK why but if work it's fine
+// const Survey = require('../models/Survey'); //without this my app crash, IDK why but if work it's fine
 
+// const Survey = mongoose.model('surveys');
 const Survey = mongoose.model('surveys');
 
 

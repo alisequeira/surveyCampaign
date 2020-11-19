@@ -10,7 +10,16 @@ const bodyParser = require('body-parser');
 require('./models/User');
 require('./models/Survey');
 require('./services/passport');
+// mongoose.connect(keys.mongoURI);//connecting to the data base mongoDB
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
+    .then(() => console.log('database is running'))
+    .catch(err => console.log('error connecting to database'));
+
+
 const app = express(); //Generate a new express aplication
+
+// hello
+
 app.use(bodyParser.json());//this middleware parse incoming bodies in a middleware before your handlers, avaliable under the req.body property
 app.use(//middle ware
     cookieSession({
@@ -25,6 +34,8 @@ app.use(passport.session());
 authRoute(app);
 billingRoute(app);
 surveyRoute(app);
+
+const PORT = process.env.PORT || 5000; //If there an environment variable that has been already defined by heroku then used, IFNOT use port 5000
 
 //Routing in PRODUCTION
 //this is sending the build files created in the client directory when I hit npm run build
@@ -41,7 +52,6 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-mongoose.connect(keys.mongoURI);//connecting to the data base mongoDB
-const PORT = process.env.PORT || 5000; //If there an environment variable that has been already defined by heroku then used, IFNOT use port 5000
+
 //so in development environment we're listenig in port 5000 and in producction we're listening in wherever port heroku set to us
 app.listen(PORT, () => console.log('server listenig'));
